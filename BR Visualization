@@ -1,0 +1,33 @@
+import pandas as pd
+from datetime import datetime
+import matplotlib.pyplot as plt
+
+
+
+results = 'c:/Files/stats/results1.txt'
+column_labels = ['Date','Feed','File']
+
+
+# Read in CSV file with delimiter set as space
+df = pd.read_csv(results, delimiter=' ', header=None)
+
+
+# Apply column lables
+df.columns = column_labels
+
+
+# Replace a charater in df['Date'] column
+df['Date'] = df['Date'].str.replace('-',':')
+
+
+
+# Change df['Date'] to datetime object - Date    datetime64[ns]
+df['Date'] =  pd.to_datetime(df['Date'], format='%m/%d/%y:%H')
+
+
+
+
+
+print(df.tail(5))
+
+df.dtypes
